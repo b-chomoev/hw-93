@@ -51,7 +51,7 @@ export class AlbumsController {
     const newAlbum = new this.albumModel({
       name: albumDto.name,
       artist: albumDto.artist,
-      date: albumDto.date,
+      date: new Date().getFullYear(),
       image: file && file.filename ? '/uploads/albums/' + file.filename : null,
     });
     return await newAlbum.save();
