@@ -9,6 +9,7 @@ import { Album, AlbumSchema } from './schemas/album.schema';
 import { TracksController } from './tracks/tracks.controller';
 import { Track, TrackSchema } from './schemas/track.schema';
 import { User, UserSchema } from './schemas/user.schema';
+import { UsersController } from './users/users.controller';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { User, UserSchema } from './schemas/user.schema';
     ArtistsController,
     AlbumsController,
     TracksController,
+    UsersController,
   ],
   providers: [AppService],
 })

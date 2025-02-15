@@ -7,6 +7,7 @@ export interface UserDocument extends Document {
   username: string;
   password: string;
   token: string;
+  role: string;
   generateToken: () => void;
   checkPassword: (password: string) => Promise<boolean>;
 }
@@ -21,6 +22,8 @@ export class User {
   password: string;
   @Prop({ required: true })
   token: string;
+  @Prop({ required: true, enum: ['admin', 'user'], default: 'user' })
+  role: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
