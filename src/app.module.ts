@@ -11,6 +11,7 @@ import { Track, TrackSchema } from './schemas/track.schema';
 import { User, UserSchema } from './schemas/user.schema';
 import { UsersController } from './users/users.controller';
 import { AuthService } from './auth/auth.service';
+import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { AuthService } from './auth/auth.service';
     TracksController,
     UsersController,
   ],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService, LocalStrategy],
 })
 export class AppModule {}
