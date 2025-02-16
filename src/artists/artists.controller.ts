@@ -15,12 +15,15 @@ import { Model } from 'mongoose';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateArtistDto } from './create-artist.dto';
 import { TokenAuthGuard } from '../token-auth/token-auth.guard';
+import { Roles } from '../roles/roles.decorator';
+import { Role } from '../roles/role.enum';
 
 @Controller('artists')
 export class ArtistsController {
   constructor(
     @InjectModel(Artist.name) private artistModel: Model<ArtistDocument>,
-  ) {}
+  ) {
+  }
 
   @Get()
   getAllArtists() {
@@ -57,6 +60,7 @@ export class ArtistsController {
   }
 
   @Delete(':id')
+  @Roles(Role.Admin)
   async deleteArtist(@Param('id') id: string) {
     const artist = await this.artistModel.findByIdAndDelete(id);
 

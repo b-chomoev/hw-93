@@ -15,7 +15,6 @@ export class TokenAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req: Request = context.switchToHttp().getRequest();
-
     const token: string | undefined = req.get('Authorization');
 
     if (!token) {
