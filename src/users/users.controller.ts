@@ -33,7 +33,7 @@ export class UsersController {
   @UseGuards(AuthGuard('local'))
   @Post('sessions')
   login(@Req() req: Request<{ user: User }>) {
-    return req.user;
+    return { message: 'Welcome', user: req.user };
   }
 
   @UseGuards(TokenAuthGuard)
@@ -42,7 +42,7 @@ export class UsersController {
     const user: UserDocument = new this.userModel(req.user);
     user.generateToken();
     await user.save();
-    return { message: 'Logged out', req: req.user };
+    return { message: 'Logged out', user: req.user };
   }
 
   @UseGuards(TokenAuthGuard)
