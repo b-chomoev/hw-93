@@ -15,7 +15,7 @@ import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/spotify'),
+    MongooseModule.forRoot('mongodb://localhost/spotify-nest'),
     MongooseModule.forFeature([
       { name: Artist.name, schema: ArtistSchema },
       { name: Album.name, schema: AlbumSchema },
