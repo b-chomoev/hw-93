@@ -15,6 +15,7 @@ import { Model } from 'mongoose';
 import { Album, AlbumDocument } from '../schemas/album.schema';
 import { CreateTrackDto } from './create-track.dto';
 import { TokenAuthGuard } from '../token-auth/token-auth.guard';
+import { RolesGuard } from '../roles/roles.guard';
 
 @Controller('tracks')
 export class TracksController {
@@ -46,6 +47,8 @@ export class TracksController {
     return await newTrack.save();
   }
 
+  @UseGuards(TokenAuthGuard)
+  @UseGuards(RolesGuard)
   @Delete(':id')
   async deleteTrack(@Param('id') id: string) {
     const deletedTrack = await this.trackModel.findByIdAndDelete(id);

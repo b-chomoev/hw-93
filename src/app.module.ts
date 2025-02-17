@@ -12,8 +12,6 @@ import { User, UserSchema } from './schemas/user.schema';
 import { UsersController } from './users/users.controller';
 import { AuthService } from './auth/auth.service';
 import { LocalStrategy } from './local.strategy';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './roles/roles.guard';
 
 @Module({
   imports: [
@@ -32,11 +30,6 @@ import { RolesGuard } from './roles/roles.guard';
     TracksController,
     UsersController,
   ],
-  providers: [
-    AppService,
-    AuthService,
-    LocalStrategy,
-    { provide: APP_GUARD, useClass: RolesGuard },
-  ],
+  providers: [AppService, AuthService, LocalStrategy],
 })
 export class AppModule {}

@@ -2,13 +2,12 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { randomUUID } from 'crypto';
 import { Document } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { Role } from '../roles/role.enum';
 
 export interface UserDocument extends Document {
   username: string;
   password: string;
   token: string;
-  role: Role[];
+  role: string;
   generateToken: () => void;
   checkPassword: (password: string) => Promise<boolean>;
 }
@@ -23,7 +22,7 @@ export class User {
   password: string;
   @Prop({ required: true })
   token: string;
-  @Prop({ required: true, enum: [Role.Admin, Role.User], default: 'user' })
+  @Prop({ required: true, enum: ['admin', 'user'], default: 'user' })
   role: string;
 }
 
